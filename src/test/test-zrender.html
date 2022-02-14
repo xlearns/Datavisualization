@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/zrender/4.3.0/zrender.min.js"></script>
+</head>
+<body>
+ <div id="container" style="width:800px;height:800px"></div>
+<script>
+  function $(el){
+    return document.querySelector(el)
+  }
+  const zr = zrender.init($('#container')) 
+
+  const rect = new zrender.Rect({
+    shape:{
+      x:0,
+      y:0,
+      width:50,
+      height:50
+    },
+    style:{
+      fill:'red',
+      stroke:'green',
+      lineWidth:10
+    }
+  })
+  const line1 = new zrender.Polyline({
+    shape:{
+      points:[
+        [100,100],
+        [250,75],
+      ]
+    },
+    style:{
+        stroke:'red',
+        lineWidth:10
+    }
+  })
+  const line2= new zrender.Polyline({
+    shape:{
+      points:[
+        [250,75],
+        [300,100]
+      ]
+    },
+    style:{
+        stroke:'red',
+        lineWidth:1
+    }
+  })
+
+  const circle = new zrender.Circle({
+    shape:{
+      cx:200,
+      cy:200,
+      r:50
+    },
+    style:{
+      fill:'red',
+      stroke:'green',
+      lineWidth:2
+    }
+  })
+  zr.add(circle)
+  zr.add(line1)
+  zr.add(line2)
+  zr.add(rect)
+</script>
+</body>
+</html>
