@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import { $, echarts } from "@/utils/index";
 const props = defineProps({
 	options: Object as any,
@@ -18,6 +18,7 @@ const props = defineProps({
 		},
 	},
 });
+let dom = ref();
 
 let $echarts = echarts();
 let charts: any;
@@ -35,12 +36,15 @@ const onResize = function () {
 	charts?.resize();
 };
 onMounted(() => {
-	let dom = $(".echats");
+	let _dom = dom.value;
 	if (!props.open) {
-		dom.style.height = "150px";
-		dom.style.width = "300px";
+		_dom.style.height = "150px";
+		_dom.style.width = "300px";
+	} else {
+		_dom.style.height = "100%";
+		_dom.style.width = "100%";
 	}
-	charts = $echarts.init(dom, props.theme, props.initOptions);
+	charts = $echarts.init(_dom, props.theme, props.initOptions);
 	charts.setOption(props.options);
 
 	window.addEventListener("resize", onResize);
@@ -52,12 +56,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<div class="echats"></div>
+	<div class="echats" ref="dom"></div>
 </template>
-
-<style scoped>
-.echats {
-	width: 100%;
-	height: 100%;
-}
-</style>

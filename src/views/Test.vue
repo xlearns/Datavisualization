@@ -5,7 +5,7 @@ const initOptions = {
 	renderer: "svg",
 };
 let state = reactive({
-	options: {
+	options1: {
 		title: {
 			text: "第一个 ECharts 实例",
 		},
@@ -25,12 +25,43 @@ let state = reactive({
 			},
 		],
 	},
+	options2: {
+		title: {
+			text: "第一个 ECharts 实例",
+		},
+		tooltip: {},
+		legend: {
+			data: ["销量"],
+		},
+		xAxis: {
+			data: ["衬衫1", "羊毛衫2", "雪纺衫3", "裤子4", "高跟鞋5", "袜子1"],
+		},
+		yAxis: {},
+		series: [
+			{
+				name: "销量",
+				type: "bar",
+				data: [500, 2000, 3600, 1000, 1000, 2000],
+			},
+		],
+	},
 });
+
+const getOption1 = function () {
+	return state.options1;
+};
+
+const getOption2 = function () {
+	return state.options2;
+};
 </script>
 
 <template>
 	<div class="box">
-		<vEcharts :options="state.options" :initOptions="initOptions" open />
+		<vEcharts :options="getOption1()" :initOptions="initOptions" open />
+	</div>
+	<div class="box">
+		<vEcharts :options="getOption2()" open />
 	</div>
 </template>
 
