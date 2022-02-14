@@ -57,15 +57,26 @@ const getOption2 = function () {
 </script>
 
 <template>
-	<div class="box">
-		<vEcharts :options="getOption1()" :initOptions="initOptions" open />
-	</div>
-	<div class="box">
-		<vEcharts :options="getOption2()" open />
+	<div class="content">
+		<div class="box">
+			<vEcharts :options="getOption1()" :initOptions="initOptions" open />
+		</div>
+		<div class="box">
+			<vEcharts :options="getOption2()" open />
+		</div>
+		<div class="box">
+			<vEcharts :options="getOption1()" :initOptions="initOptions" open />
+		</div>
+		<div class="box">
+			<vEcharts :options="getOption2()" open />
+		</div>
 	</div>
 </template>
 
 <style scoped>
+.content {
+	display: flex;
+}
 .box {
 	width: 400px;
 	height: 400px;

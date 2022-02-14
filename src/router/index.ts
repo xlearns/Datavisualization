@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import Test from '@/views/Test.vue'
+import TestEcharts from '@/views/test/echarts/index.vue'
+import TestWindicss from '@/views/test/windicss/index.vue'
+import Test from '@/views/test/index.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -11,8 +13,18 @@ const router = createRouter({
     },
     {
       path: '/test',
-      name: 'test',
-      component: Test
+      redirect:'/test/echarts',
+      component:Test,
+      children:[
+        {
+          path:"echarts",
+          component:TestEcharts
+        },
+        {
+          path:"windicss",
+          component:TestWindicss
+        }
+      ]
     },
   ]
 })
